@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Message Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Send a Message</h1>
+        <input type="text" id="messageInput" placeholder="Type your message here">
+        <button onclick="sendMessage()">Send</button>
+        <h2 id="receivedMessage"></h2>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            localStorage.setItem('message', message);
+            alert('Message sent!');
+        }
+
+        function receiveMessage() {
+            const message = localStorage.getItem('message');
+            if (message) {
+                document.getElementById('receivedMessage').innerText = `Message: ${message}`;
+            }
+        }
+
+        window.onload = receiveMessage;
+    </script>
+</body>
+</html>
